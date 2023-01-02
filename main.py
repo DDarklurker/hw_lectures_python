@@ -43,11 +43,13 @@ if buy_sell.endswith("sell"):
     remain = float(f"{remain:.2f}")
     # result
     print(f"Ваша конвертація{result:>7}\nВаша решта{remain:>16} грн")
-if buy_sell.endswith("buy"):
+elif buy_sell.endswith("buy"):
     # input your USD
     val_usd = float(input("Кількість доларів: "))
     # your UAH
     result = float(val_usd * AUH_USD)
     # result
     print(f"Ваша конвертація{result:>7.2f} грн")
+else:
+    print("Не вірна операція!")
 
