@@ -22,6 +22,6 @@ for i in range(len(your_pwd)):
 if len(your_pwd) >= 12:
     has_range = True
 if has_lower and has_range and has_upper and has_int:
-    print("Пароль беспечний")
+    print("Пароль безпечний")
 else:
-    print("Пароль не беспечний")
+    print("Пароль не безпечний")

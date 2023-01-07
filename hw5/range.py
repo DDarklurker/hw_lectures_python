@@ -14,4 +14,4 @@ elif a > b + 1:
         line += f" {i}"
     print(line)
 else:
-    print("Між a та b не має цілих чисел")
+    print("Між a та b немає цілих чисел")
