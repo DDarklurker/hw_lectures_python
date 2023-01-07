@@ -4,7 +4,7 @@
  Коли ви пишете слово end цикл припиняється і програма видає сумму числел.
 """
 count = 0
-while (True):
+while True:
     load = input(f"Введіть ціле число: ")
     if load.isdigit():
         count += int(load)
