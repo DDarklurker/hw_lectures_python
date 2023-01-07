@@ -1,0 +1,27 @@
+"""
+ Вивести всі числа між числами a, b , 1 < (a,b) < 200
+ що діляться на 2, 3, 4, 5, 6. Кожна группа має бути виведена окремою групою, зі строкою не більше 10 чисел
+"""
+
+a = int(input(f"Введіть a: "))
+b = int(input(f"Введіть b: "))
+line = ''
+if 0 < a < 200 and 0 < b <= 200:
+    if a + 1 < b:
+        for j in range(2, 7, 1):
+            for i in range(a + 1, b, 1):
+                if i % j == 0:
+                    line += f" {i},"
+            print(f"Dividible by {j}:{line}")
+            line = ''
+    elif a > b + 1:
+        for j in range(2, 7, 1):
+            for i in range(b + 1, a, 1):
+                if i % j == 0:
+                    line += f" {i},"
+            print(f"Dividible by {j}:{line}")
+            line = ''
+    else:
+        print("Між a та b не має цілих чисел")
+else:
+    print("Вкажіть коректний діапазон")
