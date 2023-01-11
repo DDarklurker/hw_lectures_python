@@ -3,8 +3,15 @@
 """
 
 def list_intercection(list1, list2):
-    pass
-
+    result = None
+    for i,j in zip(list1,list2):
+        if i==j:
+            result = (j,)
+    return result
+print(list_intercection([1, 1, 1, 2], [1, 3, 4]))
+print(list_intercection(["foo", 1, "bar"], [2, 3, 4]))
+print(list_intercection(["foo", 1, "bar"], []))
+print(list_intercection(["foo", 1, "bar"], [4, "foo", 7]))
 assert list_intercection([1, 1, 1, 2], [1, 3, 4]) == [1, ]
 assert list_intercection(["foo", 1, "bar"], [2, 3, 4]) == None
 assert list_intercection(["foo", 1, "bar"], []) == None
