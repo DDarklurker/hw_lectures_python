@@ -8,11 +8,22 @@
 def second_smallest(array):
     array.sort()
     return array[1]
-test1 = [1, 2, 2, 3]
-test2 = [-1, 10, -2, 2]
 
 
-
+def second_smallest(array):
+    first_min = array[0]
+    for i in range(len(array)):
+        if first_min > array[i]:
+            first_min = array[i]
+    for i in range(len(array)):
+        if first_min == array[0]:
+            second_min = array[1]
+        else:
+            second_min = array[0]
+    for i in range(len(array)):
+        if second_min > array[i] and first_min != array[i]:
+            second_min = array[i]
+    return second_min
 
 
 print(second_smallest([1, 2, 2, 3]))
