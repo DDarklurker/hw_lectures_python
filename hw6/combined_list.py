@@ -2,12 +2,14 @@
 написати програму, яка приймає два списки та видає новий список зі спільними унікальними елементами
 """
 
+
 def list_intercection(list1, list2):
-    result = None
-    for i,j in zip(list1,list2):
-        if i==j:
-            result = (j,)
+    result = list(set(list1) & set(list2))
+    if not result:
+        return None
     return result
+
+
 print(list_intercection([1, 1, 1, 2], [1, 3, 4]))
 print(list_intercection(["foo", 1, "bar"], [2, 3, 4]))
 print(list_intercection(["foo", 1, "bar"], []))
