@@ -21,3 +21,6 @@ def eye_matrix(size):
 
 print(eye_matrix(3))
 print(eye_matrix(4))
+
+assert eye_matrix(3) == [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+assert eye_matrix(4) == [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
