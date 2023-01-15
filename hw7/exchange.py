@@ -1,4 +1,3 @@
-
 corency_courses = {
     "UAH": {
         "buy": {
@@ -8,6 +7,8 @@ corency_courses = {
         },
         "sell": {}}
 }
+
+
 def sell_value(your_course):
     return your_course + (your_course * 0.05)
 
@@ -32,6 +33,7 @@ def your_dollars(val_uah):
 def your_payment(val_uah):
     return val_uah % corency_courses['UAH']['buy']['USD']
 
+
 """def currency_in_exhange(exchange):
 """
 while True:
@@ -41,8 +43,12 @@ while True:
     else:
         try:
             val_uah = float(val_uah)
+            if val_uah < 0:
+                print("Не вірне значення, спробуйде ще!")
+                continue
             print(f"Вашаша валюти {your_dollars(val_uah)} дол")
             print(f"Ваша решта {your_payment(val_uah):>7} грн")
         except ValueError:
             print("Не вірна операція, спробуйде ще!")
+
 
