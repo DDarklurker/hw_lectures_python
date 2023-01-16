@@ -1,3 +1,10 @@
+"""
+2) Облаштувати Переведення валют в обмінику через словник(приклад структури на гітхабі)
+3) Загорнути код що робить конвертацію та розраховує курс продажу в фунції.
+4) В словнику дані кількість купюр кожного номіналу. Зробити фунцію яка перевіряє чи вистачить коштів чи купюр щоб обміняти гроші..
+
+"""
+
 corency_courses = {
     "UAH": {
         "buy": {
@@ -26,16 +33,36 @@ print(f"*{corency_courses['UAH']['buy']['PLN']:<5.2f}{'PLN':^5}{corency_courses[
 print(f"{'':*^17}")
 
 
-def your_dollars(val_uah):
-    return val_uah // corency_courses['UAH']['buy']['USD']
+def your_dollars(valual_uah):
+    return valual_uah // corency_courses['UAH']['sell']['USD']
 
 
-def your_payment(val_uah):
-    return val_uah % corency_courses['UAH']['buy']['USD']
+def your_payment(valual_uah):
+    return valual_uah % corency_courses['UAH']['sell']['USD']
 
 
-"""def currency_in_exhange(exchange):
-"""
+def currency_in_exchange(exchange):
+    dollars = your_dollars(exchange)
+
+    def exchange(dollar):
+        for key in bank:
+            if bank[key] != 0 and key <= dollar:
+                bank[key] -= 1
+                dollar -= key
+                dollar = exchange(dollar)
+        return dollar
+
+    differ = exchange(dollars)
+    if differ != dollars:
+        print(f"На наявні купюри ви отримаєте {dollars - differ:>6} дол")
+        print(f"Ваша решта {your_payment(val_uah) + (differ * corency_courses['UAH']['sell']['USD']):>25} грн")
+        print(f"В обміннику {bank} валют")
+    else:
+        print(f"На жаль в обмінику закінчилась валюта, ваша решта {val_uah:>7} грн")
+        print(f"В обміннику {bank} валют")
+    return
+
+
 while True:
     val_uah = (input("Введіть кількість гривень, яку ви хочете продати (для виходу введіть end): "))
     if val_uah.endswith("end"):
@@ -46,9 +73,6 @@ while True:
             if val_uah < 0:
                 print("Не вірне значення, спробуйде ще!")
                 continue
-            print(f"Вашаша валюти {your_dollars(val_uah)} дол")
-            print(f"Ваша решта {your_payment(val_uah):>7} грн")
+            currency_in_exchange(val_uah)
         except ValueError:
             print("Не вірна операція, спробуйде ще!")
-
-
