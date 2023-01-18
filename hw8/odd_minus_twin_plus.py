@@ -8,14 +8,10 @@ while True:
     number = (input("Введіть чьотне або нечьотне число: "))
     if number.isdigit():
         number = int(number)
-        if number % 2 == 0:
-            sum += number
-        else:
-            sum -= number
+        sum = sum + number if number % 2 == 0 else sum - number
     else:
         if number == 'end':
             break
         else:
             print('Не коректно введені дані, спробуйте ще!')
-
 print(sum)
