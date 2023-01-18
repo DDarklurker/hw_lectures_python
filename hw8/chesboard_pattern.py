@@ -23,6 +23,5 @@ def chesboard_pattern(width, height):
     return chesboard
 
 
-print(chesboard_pattern(4, 3))
 assert chesboard_pattern(2, 2) == [[0, 1], [1, 0]]
 assert chesboard_pattern(4, 3) == [[0, 1, 0, 1], [1, 0, 1, 0], [0, 1, 0, 1]]
