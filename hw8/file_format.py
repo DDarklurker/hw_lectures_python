@@ -4,12 +4,21 @@
 
 """
 import json
+"""
+FileNotFoundError: [Errno 2] No such file or directory: 'data.json'
+При запуску я отримав цю помилку. Будь ласка кладіть всі необхідні для роботи файли сюди.
 
+Більш менш ок. Аее якщо я вам дам json  на 1000 рядків? також руками все будете перебирати? 
+"""
 with open("data.json", "r") as file:
     data_j = json.load(file)
     file.close()
 data_list = data_j["data"]
 colum_f = {}
+# як би окей що ви робите дел... але ви трошки себе путаєте.
+# программа має бути правилом перекладу одного джей сон в інший.
+# все ж таки варто пояснити як перекласти(переложить - свинособача) одні данні в іншу структура
+# а не як виліпити з однієї структури 2-гу
 for i in range(len(data_list)):
     colum_f[data_list[i]['index']] = data_list[i]
     del colum_f[data_list[i]['index']]['index']
@@ -32,6 +41,10 @@ for i in range(len(data_list)):
     split_f['index'] = value_index
 value_data_1 = []
 value_data_2 = []
+"""
+Більш менш ок. Аее якщо я вам дам json  на 1000 рядків? також руками все будете перебирати? Програма має бути не залежною
+від розміру вхідних данних!!!! 
+"""
 value_data_1.append([data_list[0].get('col 1')])
 value_data_1.append([data_list[0].get('col 2')])
 value_data_2.append([data_list[1].get('col 1')])
