@@ -6,22 +6,19 @@
 """
 import math
 
-num = '-3243'
-if num.isnumeric():
-    print(num)
 
 def sum_list(array):
     sum = 0
     for i in range(len(array)):
         if type(array[i]) == str:
-            if array[i].replace('.', '', 1).isdigit():
-
-                array[i] = int(array[i])
+            if str(math.fabs(float(array[i]))).replace('.', '', 1).isdigit():
+                array[i] = float(array[i])
             else:
                 print('У лісті є строки!')
                 break
         sum += array[i]
-
+    if str(sum).endswith('.0'):
+        sum = int(sum)
     return sum
 
 
