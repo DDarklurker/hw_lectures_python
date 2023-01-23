@@ -48,13 +48,14 @@ index -1 і не зробив аппенд
 
 def input_data(data, num=0, result=[], count=0):
     # result = []
-    for index, i in enumerate(data[num:]):
+    for index, i in enumerate(data[num:], num):
         if i["question"]:
             input_value = input(i["question"])
             if input_value == "reset":
                 return input_data(data)
             elif input_value == "back":
-                return input_data(data, index - 1 - count, result[:len(result) - 1 - count])  # index = 3
+                return input_data(data, 0, result[:len(result) - 1 - count])\
+                    if index == 0 else input_data(data, index - 1 - count,result[:len(result) - 1 - count])  # index = 3
             if i["func"]:
                 input_value = float(input_value)
             result.append(input_value)
