@@ -1,5 +1,6 @@
 import json
 
+
 def get_curr_course(path="data/currency_course.json"):
     with open(path, 'r') as file:
         return json.load(file)
@@ -21,6 +22,7 @@ def cal_cell_course(cource, mul):
 def exchange(amount, cource, operation, old_curr, new_curr):
     return amount * cource[old_curr][operation][new_curr]
 
+
 # TODO написати бек і переввезти минуле значення при цьому зберігаючи старе
 # TODO якщо помилиться користувач то ввести знову.....
 """
@@ -39,21 +41,25 @@ index -1 і не зробив аппенд
 
 
 """
-#TODO протестувати цю рекурсію... чи працює вона
-#TODO написати ітераційний розв'язовак
 
-def input_data(data, num =0, result = []):
-    #result = []
-    for index, i in enumerate(data[0:]):
+
+# TODO протестувати цю рекурсію... чи працює вона - не коректно
+# TODO написати ітераційний розв'язовак
+
+def input_data(data, num=0, result=[], count=0):
+    # result = []
+    for index, i in enumerate(data[num:]):
         if i["question"]:
             input_value = input(i["question"])
             if input_value == "reset":
                 return input_data(data)
             elif input_value == "back":
-                return input_data(data, num + index, result[:len(result)-1])
+                return input_data(data, index - 1 - count, result[:len(result) - 1 - count])  # index = 3
             if i["func"]:
                 input_value = float(input_value)
             result.append(input_value)
         else:
             result.append(i["fixture"])
+            count += 1
+        print(result)
     return result

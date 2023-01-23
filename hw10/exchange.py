@@ -13,21 +13,20 @@
 ) чи можемо видати чи ні. (банк)
 
 """
-
 from settings import INPUT_QUESTIONS
 from utils import get_curr_course, cal_cell_course, exchange, input_data
 
-# говоритиь що тут в нас скрипт який тре виконати
+# говоритиь що тут в нас скрипт який треба виконати
 if __name__ == "__main__":
     cource = get_curr_course()
     cource = cal_cell_course(cource, 0.05)
 
-    amount = 1600
+    """amount = 1600
     operation = "sell"
     old_curr = "UAH"
     new_curr = "USD"
     result = exchange(amount, cource, operation, old_curr, new_curr)
-    print(f"I will {operation} {amount} {new_curr} for {old_curr} {result}")
+    print(f"I will {operation} {amount} {new_curr} for {old_curr} {result}")"""
 
     amount, op, old_curr, new_curr = input_data(INPUT_QUESTIONS)
     new_ammount = exchange(amount, cource, op, old_curr, new_curr)
