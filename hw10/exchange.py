@@ -1,6 +1,7 @@
 # TODO add bank calculation
 # TODO  додати табличку з курсами
 # TODO заппропонувати ще покращення обміника
+
 """
 +) Беремо звідкісь ззовні курс покупки
 +) Розраховуємо курс продажу
@@ -14,7 +15,7 @@
 
 """
 from settings import INPUT_QUESTIONS
-from utils import get_curr_course, cal_cell_course, exchange, input_data, table_exchange
+from utils import get_curr_course, cal_cell_course, exchange, input_data, table_exchange, issuance_of_currency, get_bank, result
 
 # говоритиь що тут в нас скрипт який треба виконати
 if __name__ == "__main__":
@@ -31,5 +32,6 @@ if __name__ == "__main__":
     table_exchange(cource)
     amount, op, old_curr, new_curr = input_data(INPUT_QUESTIONS)
     new_ammount = exchange(amount, cource, op, old_curr, new_curr)
-
-    print(f"we will {op} {amount} {new_curr} for {new_ammount} {old_curr}")
+    """bank = get_bank()
+    diff = issuance_of_currency(amount, new_ammount, bank, op)"""
+    print(result(op, amount, new_curr, new_ammount, old_curr))

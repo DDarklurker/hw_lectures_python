@@ -42,11 +42,10 @@ index -1 і не зробив аппенд
 
 """
 
-
 # TODO протестувати цю рекурсію... чи працює вона - не коректно
 # TODO написати ітераційний розв'язовак
 
-def input_data(data, num=0, result=[], count=0):
+"""def input_data(data, num=0, result=[], count=0):
     # result = []
     for index, i in enumerate(data[num:], num):
         if i["question"]:
@@ -64,7 +63,37 @@ def input_data(data, num=0, result=[], count=0):
             result.append(i["fixture"])
             count += 1
         print(result)
+    return result"""
+
+
+def input_data(data, num=0, result=[], count=0):
+    # result = []
+    while num < len(data):
+            if data[num]["question"]:
+                input_value = input(data[num]["question"])
+                if input_value == "reset":
+                    return input_data(data)
+                elif input_value == "back":
+                    if count == 0:
+                        num -= 1
+                        result = result[:len(result) - 1]
+                        continue
+                    else:
+                        num = num - count - 1
+                        count = 0
+                        result = result[:len(result) - count - 1]
+                        continue
+                if data[num]["func"]:
+                    input_value = float(input_value)
+                result.append(input_value)
+                num += 1
+            else:
+                result.append(data[num]["fixture"])
+                num += 1
+                count += 1
+            print(result)
     return result
+
 
 def table_exchange(cource):
     print(f"{'':*^17}")
@@ -75,11 +104,25 @@ def table_exchange(cource):
     print(f"{'':*^17}")
     return
 
-def issuance_of_currency(dollar):
-    bank = get_bank()
-    for key in bank:
-        if bank[key] != 0 and key <= dollar:
-            bank[key] -= 1
-            dollar -= key
-            dollar = exchange(dollar)
+# TODO зробити валютний запас банку
+def issuance_of_currency(input, dollar, bank, op):
+    if op == 'sell':
+        for key in bank:
+            if bank[key] != 0 and float(key) <= dollar:
+                bank[key] -= 1
+                dollar -= float(key)
+                dollar = issuance_of_currency(dollar, bank, op)
+    else:
+        for key in bank:
+            if input != 0 and float(key) <= input:
+                bank[key] += 1
+                input -= float(key)
+                input = issuance_of_currency(input, 0, bank, op)
+    with open("data/bank.json", "w", encoding="utf-8") as file:
+        json.dump(bank, file)
     return dollar
+
+
+# TODO доробити коректний вивід
+def result(op, amount, new_curr, new_ammount, old_curr):
+    return f"we will {op} {amount} {new_curr} for {new_ammount} {old_curr}"
