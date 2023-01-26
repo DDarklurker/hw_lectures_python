@@ -31,4 +31,5 @@ if __name__ == "__main__":
     table_exchange(cource)
     amount, op, old_curr, new_curr = input_data(INPUT_QUESTIONS)
     new_ammount = exchange(amount, cource, op, old_curr, new_curr)
+
     print(f"we will {op} {amount} {new_curr} for {new_ammount} {old_curr}")

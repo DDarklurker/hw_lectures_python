@@ -75,10 +75,11 @@ def table_exchange(cource):
     print(f"{'':*^17}")
     return
 
-    def bank(dollar):
-        for key in bank:
-            if bank[key] != 0 and key <= dollar:
-                bank[key] -= 1
-                dollar -= key
-                dollar = exchange(dollar)
-        return dollar
+def issuance_of_currency(dollar):
+    bank = get_bank()
+    for key in bank:
+        if bank[key] != 0 and key <= dollar:
+            bank[key] -= 1
+            dollar -= key
+            dollar = exchange(dollar)
+    return dollar
