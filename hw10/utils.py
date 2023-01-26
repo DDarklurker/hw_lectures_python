@@ -54,8 +54,9 @@ def input_data(data, num=0, result=[], count=0):
             if input_value == "reset":
                 return input_data(data)
             elif input_value == "back":
-                return input_data(data, 0, result[:len(result) - 1 - count])\
-                    if index == 0 else input_data(data, index - 1 - count,result[:len(result) - 1 - count])  # index = 3
+                return input_data(data, 0, result[:len(result) - 1 - count]) \
+                    if index == 0 else input_data(data, index - 1 - count,
+                                                  result[:len(result) - 1 - count])  # index = 3
             if i["func"]:
                 input_value = float(input_value)
             result.append(input_value)
@@ -64,3 +65,20 @@ def input_data(data, num=0, result=[], count=0):
             count += 1
         print(result)
     return result
+
+def table_exchange(cource):
+    print(f"{'':*^17}")
+    print(f"{'* BUY':<5}{'':6}{'SELL *':>5}")
+    print(f"*{cource['UAH']['buy']['EUR']:<5.2f}{'EUR':^5}{cource['UAH']['sell']['EUR']:>5.2f}*")
+    print(f"*{cource['UAH']['buy']['USD']:<5.2f}{'USD':^5}{cource['UAH']['sell']['USD']:>5.2f}*")
+    print(f"*{cource['UAH']['buy']['PLN']:<5.2f}{'PLN':^5}{cource['UAH']['sell']['PLN']:>5.2f}*")
+    print(f"{'':*^17}")
+    return
+
+    def bank(dollar):
+        for key in bank:
+            if bank[key] != 0 and key <= dollar:
+                bank[key] -= 1
+                dollar -= key
+                dollar = exchange(dollar)
+        return dollar

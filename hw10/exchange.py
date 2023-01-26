@@ -14,7 +14,7 @@
 
 """
 from settings import INPUT_QUESTIONS
-from utils import get_curr_course, cal_cell_course, exchange, input_data
+from utils import get_curr_course, cal_cell_course, exchange, input_data, table_exchange
 
 # говоритиь що тут в нас скрипт який треба виконати
 if __name__ == "__main__":
@@ -28,6 +28,7 @@ if __name__ == "__main__":
     result = exchange(amount, cource, operation, old_curr, new_curr)
     print(f"I will {operation} {amount} {new_curr} for {old_curr} {result}")"""
 
+    table_exchange(cource)
     amount, op, old_curr, new_curr = input_data(INPUT_QUESTIONS)
     new_ammount = exchange(amount, cource, op, old_curr, new_curr)
     print(f"we will {op} {amount} {new_curr} for {new_ammount} {old_curr}")
