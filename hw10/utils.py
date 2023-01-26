@@ -80,8 +80,8 @@ def input_data(data, num=0, result=[], count=0):
                         continue
                     else:
                         num = num - count - 1
-                        count = 0
                         result = result[:len(result) - count - 1]
+                        count = 0
                         continue
                 if data[num]["func"]:
                     input_value = float(input_value)
