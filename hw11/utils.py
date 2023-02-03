@@ -1,7 +1,8 @@
 import json
+from typing import NoReturn, Union, Any
 
 
-def get_curr_course(path="data/currency_course.json"):
+def get_curr_course(path="data/currency_course.json") -> dict:
     """
     Функція витягує з файлу купівлю валют.
     :param path: шлях, де знаходиться json з курсом валют
@@ -11,7 +12,7 @@ def get_curr_course(path="data/currency_course.json"):
         return json.load(file)
 
 
-def get_bank(path="data/bank.json"):
+def get_bank(path="data/bank.json") -> dict:
     """
     Функція витягує з файлу наявні валюти з банку.
     :param path: шлях, де знаходиться json з банком
@@ -21,7 +22,7 @@ def get_bank(path="data/bank.json"):
         return json.load(file)
 
 
-def cal_cell_course(cource, mul):
+def cal_cell_course(cource: dict, mul: Union[int, float]) -> dict:
     """
     Функція вичисляє поточний продаж валют за допомогою коефіцієнту.
     :param cource: курс купівлі валют
@@ -34,7 +35,8 @@ def cal_cell_course(cource, mul):
     return cource
 
 
-def exchange(amount, cource, operation, old_curr, new_curr):
+def exchange(amount: Union[int, float], cource: dict, operation: str, old_curr: str, new_curr: str) -> Union[
+    int, float]:
     """
     Функція вироховує обмін валют.
     :param amount: введена сумма користувача
@@ -52,14 +54,14 @@ def exchange(amount, cource, operation, old_curr, new_curr):
 # TODO протестувати цю рекурсію... чи працює вона - не коректно
 # TODO написати ітераційний розв'язовак
 
-def input_data(data, num=0, result=[], count=0):
+def input_data(data: dict, num=0, result=[], count=0) -> list:
     """
-    Функція виводить запитання, де користувач повинен написати кількіс
+    Функція виводить запитання, де користувач повинен написати: сумму, операцію, види валют.
     :param data: інформація де користувач повинен ввести дані по пунктах
-    :param num:
-    :param result:
-    :param count:
-    :return:
+    :param num: рахує кільксть правильних відповідей
+    :param result: список відповідей користувача
+    :param count: рахує скільки пунктів було пропущено (приховані пункти)
+    :return: список відповідей користувача
     """
     # result = []
     for index, i in enumerate(data[num:], num):
@@ -110,7 +112,7 @@ def input_data(data, num=0, result=[], count=0):
     return result"""
 
 
-def table_exchange(cource):
+def table_exchange(cource: Union[float, int]) -> NoReturn:
     """
     Функція виводить табло у термінал
     :param cource: поточний курс
@@ -122,37 +124,38 @@ def table_exchange(cource):
     print(f"*{cource['UAH']['buy']['USD']:<5.2f}{'USD':^5}{cource['UAH']['sell']['USD']:>5.2f}*")
     print(f"*{cource['UAH']['buy']['PLN']:<5.2f}{'PLN':^5}{cource['UAH']['sell']['PLN']:>5.2f}*")
     print(f"{'':*^17}")
-    return
+    pass
+
 
 # TODO зробити валютний запас банку
-def issuance_of_currency(input, dollar, bank, op):
+def issuance_of_currency(curr: Union[int, float], new_curr: Union[int, float], bank: dict, op: str) -> Union[int, float]:
     """
-
-    :param input:
-    :param dollar:
-    :param bank:
-    :param op:
-    :return:
+    Функція видає або приймає наявні купюри з банку, та вираховує решту, якщо цих банкнот немає.
+    :param curr: 
+    :param new_curr: сума грошей 
+    :param bank: кількості валют у банку
+    :param op: вид торгівлі
+    :return: решту, на суму яких не було банкнот
     """
     if op == 'sell':
         for key in bank:
-            if bank[key] != 0 and float(key) <= dollar:
+            if bank[key] != 0 and float(key) <= new_curr:
                 bank[key] -= 1
-                dollar -= float(key)
-                dollar = issuance_of_currency(dollar, bank, op)
+                new_curr -= float(key)
+                new_curr = issuance_of_currency(new_curr, bank, op)
     else:
         for key in bank:
-            if input != 0 and float(key) <= input:
+            if curr != 0 and float(key) <= curr:
                 bank[key] += 1
-                input -= float(key)
-                input = issuance_of_currency(input, 0, bank, op)
+                curr -= float(key)
+                curr = issuance_of_currency(curr, 0, bank, op)
     with open("data/bank.json", "w", encoding="utf-8") as file:
         json.dump(bank, file)
-    return dollar
+    return new_curr
 
 
 # TODO доробити коректний вивід
-def result(op, amount, new_curr, new_ammount, old_curr):
+def result(op: str, amount: Union[float, int], new_curr: str, new_ammount: Union[int, float], old_curr: str) -> str:
     """
     Функція повинна вивести скількі користувач отримав валют при обмінні, також валютний запас банку
     :param amount: введена сумма користувача

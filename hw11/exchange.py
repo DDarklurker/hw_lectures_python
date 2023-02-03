@@ -22,6 +22,7 @@ if __name__ == "__main__":
     cource = get_curr_course()
     cource = cal_cell_course(cource, 0.05)
 
+
     """amount = 1600
     operation = "sell"
     old_curr = "UAH"
