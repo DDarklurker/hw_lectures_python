@@ -1,5 +1,5 @@
 import json
-from typing import NoReturn, Union, Any
+from typing import  Union
 
 
 def get_curr_course(path="data/currency_course.json") -> dict:
@@ -63,7 +63,6 @@ def input_data(data: dict, num=0, result=[], count=0) -> list:
     :param count: рахує скільки пунктів було пропущено (приховані пункти)
     :return: список відповідей користувача
     """
-    # result = []
     for index, i in enumerate(data[num:], num):
         if i["question"]:
             input_value = input(i["question"])
@@ -112,7 +111,7 @@ def input_data(data: dict, num=0, result=[], count=0) -> list:
     return result"""
 
 
-def table_exchange(cource: Union[float, int]) -> NoReturn:
+def table_exchange(cource: dict) -> None:
     """
     Функція виводить табло у термінал
     :param cource: поточний курс
