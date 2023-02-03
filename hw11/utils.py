@@ -128,7 +128,8 @@ def table_exchange(cource: Union[float, int]) -> NoReturn:
 
 
 # TODO зробити валютний запас банку
-def issuance_of_currency(curr: Union[int, float], new_curr: Union[int, float], bank: dict, op: str) -> Union[int, float]:
+def issuance_of_currency(curr: Union[int, float], new_curr: Union[int, float], bank: dict, op: str) -> Union[
+    int, float]:
     """
     Функція видає або приймає наявні купюри з банку, та вираховує решту, якщо цих банкнот немає.
     :param curr: 
