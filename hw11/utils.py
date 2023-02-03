@@ -1,7 +1,6 @@
 import json
 from typing import  Union
 
-
 def get_curr_course(path="data/currency_course.json") -> dict:
     """
     Функція витягує з файлу купівлю валют.
@@ -54,6 +53,7 @@ def exchange(amount: Union[int, float], cource: dict, operation: str, old_curr: 
 # TODO протестувати цю рекурсію... чи працює вона - не коректно
 # TODO написати ітераційний розв'язовак
 
+
 def input_data(data: dict, num=0, result=[], count=0) -> list:
     """
     Функція виводить запитання, де користувач повинен написати: сумму, операцію, види валют.
@@ -71,7 +71,7 @@ def input_data(data: dict, num=0, result=[], count=0) -> list:
             elif input_value == "back":
                 return input_data(data, 0, result[:len(result) - 1 - count]) \
                     if index == 0 else input_data(data, index - 1 - count,
-                                                  result[:len(result) - 1 - count])  # index = 3
+                                                  result[:len(result) - 1 - count])
             if i["func"]:
                 input_value = float(input_value)
             result.append(input_value)
@@ -80,35 +80,6 @@ def input_data(data: dict, num=0, result=[], count=0) -> list:
             count += 1
         print(result)
     return result
-
-
-"""def input_data(data, num=0, result=[], count=0):
-    # result = []
-    while num < len(data):
-            if data[num]["question"]:
-                input_value = input(data[num]["question"])
-                if input_value == "reset":
-                    return input_data(data)
-                elif input_value == "back":
-                    if count == 0:
-                        num -= 1
-                        result = result[:len(result) - 1]
-                        continue
-                    else:
-                        num = num - count - 1
-                        result = result[:len(result) - count - 1]
-                        count = 0
-                        continue
-                if data[num]["func"]:
-                    input_value = float(input_value)
-                result.append(input_value)
-                num += 1
-            else:
-                result.append(data[num]["fixture"])
-                num += 1
-                count += 1
-            print(result)
-    return result"""
 
 
 def table_exchange(cource: dict) -> None:
