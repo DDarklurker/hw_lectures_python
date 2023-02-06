@@ -45,10 +45,11 @@ class Line():
         return Line((self.calc_vector().p2 * other.calc_vector().p3 - self.calc_vector().p3 * other.calc_vector().p2), (
                 self.calc_vector().p1 * other.calc_vector().p3 - self.calc_vector().p3 * other.calc_vector().p1), (
                             self.calc_vector().p1 * other.calc_vector().p2 - self.calc_vector().p2 * other.calc_vector().p1))
-
+    #task2
     def length_line(self) -> Union[int,float]:
         return  sqrt(self.calc_vector().p1**2+self.calc_vector().p2**2)
 
+    # task2
     def calc_vector(self) -> 'Line':
         return Line(self.p2.x - self.p1.x, self.p2.y - self.p1.y, 0)
 
