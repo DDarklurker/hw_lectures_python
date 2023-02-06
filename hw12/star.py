@@ -1,5 +1,5 @@
 # на зірочку написати тайпінг до цього класу
-from typing import Union, TypeVar
+from typing import Union
 
 
 class Lenth():
