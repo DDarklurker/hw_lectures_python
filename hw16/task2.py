@@ -8,17 +8,13 @@ def inc_str(string):
     else:
         num = int(search.group()) + 1
         num_len = len(search.group())
-        num_zero = ""
+        add_zero = ""
         for i in range(num_len - len(str(num))):
-            num_zero += "0"
-        return string[:-num_len] + num_zero + str(num)
+            add_zero += "0"
+        return string[:-num_len] + add_zero + str(num)
 
-print(inc_str("1fo2obar"))
+print(inc_str("1fo2obar29"))
 print(inc_str("fo2obar"))
-print(inc_str("fo2obar9"))
-print(inc_str("foobar001019"))
-print(inc_str("foobar"))
-print(inc_str("foobar9"))
 assert inc_str("foobar") == "foobar1"
 assert inc_str("foobar0") == "foobar1"
 assert inc_str("foobar00") == "foobar01"
