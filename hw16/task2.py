@@ -7,9 +7,15 @@ def inc_str(string):
         return string + "1"
     else:
         num = int(search.group()) + 1
-        return re.sub(r'\d+$', str(num).zfill(len(search.group())), string)
+        num_len = len(search.group())
+        num_zero = ""
+        for i in range(num_len - len(str(num))):
+            num_zero += "0"
+        return string[:-num_len] + num_zero + str(num)
 
-print(inc_str("fo2obar001019"))
+print(inc_str("1fo2obar"))
+print(inc_str("fo2obar"))
+print(inc_str("fo2obar9"))
 print(inc_str("foobar001019"))
 print(inc_str("foobar"))
 print(inc_str("foobar9"))
